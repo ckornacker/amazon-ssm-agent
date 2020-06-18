@@ -29,7 +29,7 @@ func LoadLog(defaultLogDir string, logFile string) []byte {
 	errorFilePath = filepath.Join(defaultLogDir, ErrorFile)
 
 	logConfig := `
-<seelog type="adaptive" mininterval="2000000" maxinterval="100000000" critmsgcount="500" minlevel="info">
+<seelog type="adaptive" mininterval="2000000" maxinterval="100000000" critmsgcount="500" minlevel="debug">
     <exceptions>
         <exception filepattern="test*" minlevel="error"/>
     </exceptions>

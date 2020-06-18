@@ -174,7 +174,7 @@ func fetchInstanceID() (string, error) {
 		targetID, err := container.TargetID()
 		infoArray := strings.Split(targetID, "_")
 		containerID := infoArray[len(infoArray)-1]
-		return containerID, err
+		return containerID[:14], err
 	}
 
 	// trying to get instance id from managed instance registration
@@ -194,7 +194,11 @@ func fetchInstanceID() (string, error) {
 func fetchTargetID() (string, error) {
 	config, _ := appconfig.Config(false)
 	if config.Agent.ContainerMode {
-		return container.TargetID()
+		targetID, err := container.TargetID()
+		infoArray := strings.Split(targetID, "_")
+		containerID := infoArray[len(infoArray)-1]
+		return containerID[:14], err
+		//return container.TargetID()
 	} else {
 		return "", nil
 	}
